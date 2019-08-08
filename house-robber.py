@@ -1,9 +1,13 @@
+'''
+https://leetcode.com/problems/house-robber/
+'''
+
 class Solution:
 	'''
 	Bottom-up dynamic programming solution. We want to modify the array in place such that nums[i] will change to the maximum sum we can achieve through
-	any combination of values in the range [0,i] while following the adjacency rule. The recurrence relation is f(n) = max(f(n-1), f(n)+f(n-2)), since f(n)
+	any combination of values in the range [0,i] while following the adjacency rule. The recurrence relation is f(n) = max(f(n-1), nums(n)+f(n-2)), since f(n)
 	will be initialized to the house value at that location. The crucial step here is since we iterate starting at 2 to avoid zero-index errors, we need to 
-	make sure we set nums[1] to its appropriate maximum value, which is simply the max between nums[1] and nums[2]. 
+	make sure we set nums[1] to its appropriate maximum value, which is simply the max between nums[1] and nums[0]. 
 	
 	This is important in cases such as [2,1,1,2], where the max sum is between index 0 and index 4, which would not give us the correct output if we did not do this step.
 
@@ -25,7 +29,7 @@ class Solution:
 	'''
 	Top-down dynamic programming solution, with the same formulation as above. We start at the end of the array, and work our way towards the beginning. Our two base 
 	cases are when the length of the list we pass in is 1, in which case were simply returning the value in the list, or 2, in which we return the max of the two values.
-	The recursive formula is as follows: f(n) = max(f(n-1), f(n) + f(n-2)). We use a memoization dictionary to avoid redundant computations of overlapping subproblems,
+	The recursive formula is as follows: f(n) = max(f(n-1), nums(n) + f(n-2)). We use a memoization dictionary to avoid redundant computations of overlapping subproblems,
 	and use the length of the list, n, as the key, to ensure linear space complexity.
 
 	Time Complexity: O(n)
