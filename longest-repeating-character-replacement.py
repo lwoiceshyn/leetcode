@@ -21,6 +21,9 @@ class Solution:
         If replacements_needed is greater than k, increment our start pointer by one, and subtract a character count from the character we just left out of the window.
         Continue this loop until we've reached a valid window. Then, update our max_window by comparing it to the length of the current max_window, and finally,
         return the highest max_window that we found.
+
+        Time Complexity: O(n)
+        Space Complexity: O(1)
         '''
         if not s:
             return 0
