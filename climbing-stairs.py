@@ -19,10 +19,6 @@ class Solution(object):
     def __init__(self):
         self.memo = {1:1, 2:2}
     def climbStairs(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
         if n not in self.memo:
             self.memo[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
        	return self.memo[n]
@@ -37,10 +33,6 @@ class Solution2(object):
 	Space Complexity: O(n)
 	'''
     def climbStairs(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
         if n == 1:
         	return 1
         arr = [0] * len(n)
@@ -54,7 +46,7 @@ class Solution3(object):
 	This is the optimized bottom-up approach. Once we've calculated the the number of ways to get to step n, we only need
 	our previous value at n-1 and the value we just calculate to get our value at n+1, so we don't actually need to store 
 	all of the past information in memory. Instead, we use two variables, initialized at the two base case value. At every 
-	step of the iteration, we first set a temp variable equal to the variabl eat the last timestep. Then, we calculate the new 
+	step of the iteration, we first set a temp variable equal to the value at the last timestep. Then, we calculate the new 
 	value at the current timestep and assign it to the second variable. Then, we simply set the old value to the temp variable,
 	since in the next iteration this is now the number of ways to get to the timestep before last.
 
@@ -73,4 +65,4 @@ class Solution3(object):
         	temp = y
         	y = x + y
         	x = temp
-        return arr[n-1]
+        return y

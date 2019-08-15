@@ -26,7 +26,7 @@ class Solution:
 	    return num_coins
 
 
-class Solution:
+class Solution2:
 	'''
 	Top-down dynamic programming solution. The recursive formulation is as follows: f(coins, amount) = 1 + min(f(coins, amount-coin) for coin in coins).
 	We build a recursion tree starting from our target amount. At each node, create leaf nodes by subtracting each coin amount from the current amount, 
@@ -53,7 +53,7 @@ class Solution:
             return memo[amount]
 
 
-class Solution:
+class Solution3:
 	'''
 	Bottom-up dynamic programming solution. We use an array of length amount + 1 (since we're zero-indexed) to store our minimum number of coins to reach each amount value.
 	The index of the array, i, will be the amount, and the value at each index will be the minimum number of coins to reach this amount. We simply need to iterate through

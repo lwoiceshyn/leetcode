@@ -6,6 +6,8 @@ https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
 class Solution(object):
 	'''
+	One-pass solution using two pointers.
+
 	Create two pointers, called behind and ahead. Behind will attempt to lag ahead by n nodes, meaning that the node we are trying to remove is the node that behind will be pointing to,
 	since if we want to remove the node 2 from the end of a list of length 5, we are removing the 4th node. Initially, point behind and ahead to the function's passed in head. Then,
 	advance ahead n times. In the case where we want to remove the first node, n will be equal to the length of the list, and ahead will have advanced past the last node in the list,

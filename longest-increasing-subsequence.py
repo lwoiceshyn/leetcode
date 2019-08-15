@@ -66,40 +66,39 @@ class Solution2:
 
 class Solution3:
 	'''
-	To understand this solution, first understand the concept of an active LIS. As we iterate over the input, a active LIS is 
+	To understand this solution, first understand the concept of an active increasing subsequence (AIS). As we iterate over the input, an AIS is 
 	defined as the increasing sequence of a certain length which ends in the smallest possible integer value of all possible sequences 
 	of that length. 
 
-	For example, if we are iterating over an array, and we have seen the values [1,3,2] thus far. In this sequence, there are two potential
-	LIS of length 2: [1,3] and [1,2]. As we proceed with the iteration, the potential LIS of [1,2] has more potential to find a better LIS,
-	since its end value is lower. This is the active LIS of length 2. We also have an active LIS of length 1, which is just [1]. If the next value
-	we see is 5, then we now have an active LIS of length 3, which is [1,2,5], and we've seen [1,3,2,5] thus far.
+	For example, if we are iterating over an array, and we have seen the values [1,3,2] thus far. In this sequence, there are two increasing subsequences of length 2: [1,3] and [1,2]. 
+	As we proceed with the iteration, the subsequence of [1,2] has more potential to find a better LIS, since its end value is lower. This is the AIS of length 2. We also have an 
+	AIS of length 1, which is just [1]. If the next value we see is 5, then we now have an AIS of length 3, which is [1,2,5], and we've seen [1,3,2,5] thus far.
 
-	As we iterate through the array, if we know the active LIS for all lengths that we've seen up to that point, we can simply make a comparison with the
-	new value to the last integer of each of the active LIS. There are a few possible cases. 
+	As we iterate through the array, if we know the AIS for all lengths that we've seen up to that point, we can simply make a comparison with the
+	new value to the last integer of each AIS. There are a few possible cases. 
 	
-	1) The current set of all active LIS are empty (we are just starting to iterate).
-	In this case, simply add the value to our set of active LIS as an active LIS of length 1.
+	1) The current set of all AIS are empty (we are just starting to iterate).
+	In this case, simply add the value to our set of AIS as an AIS of length 1.
 
-	2)The value is greater than the last value in the longest active LIS.
-	In this case, we simply add a new active LIS to our set of all active LIS, which is 1 longer than the previous longest, with this value appended to it.
+	2)The value is greater than the last value in the longest AIS.
+	In this case, we simply add a new AIS to our set of all AIS, which is 1 longer than the previous longest, with this value appended to it.
 
-	3)The value is less than the last value in the longest active LIS.
-	In this case, we need to find the active LIS of lowest length, with an ending value greater than the value. Replace the ending value of the LIS with this value.
+	3)The value is less than the last value in the longest AIS.
+	In this case, we need to find the AIS of lowest length, with an ending value greater than the value. Replace the ending value of the AIS with this value.
 
 	To illustrate case 3:
-	We've seen [1,3,5] so far. Our set of active LIS are {[1], [1,3], and [1,3,5]} The next value we see in the iteration is 2. Now, the increasing subsequence of length
-	2 with the most potential would be [1,2], rather than the existing [1,3]. As described, we find the active LIS with lowest length in our set that has a an ending value
+	We've seen [1,3,5] so far. Our set of AIS are {[1], [1,3], and [1,3,5]} The next value we see in the iteration is 2. Now, the increasing subsequence of length
+	2 with the most potential would be [1,2], rather than the existing [1,3]. As described, we find the AIS with lowest length in our set that has a an ending value
 	greater than 2, which is [1,3], and replace it with [1,2].
 
-	There are two important factors which let us turn this into a more efficient algorithm than the DP cases. Firstly, we only care about the last value in each active LIS.
-	Thus, we don't need to store a set of all active LIS, but simply one array containing the last value of each active LIS of each length, which will have 
-	length >= the input array we are iterating over. Secondly, this will be a sorted array, meaning that when we want to find the element that we want to replace,
+	There are two important factors which let us turn this into a more efficient algorithm than the DP cases. Firstly, we only care about the last value in each AIS.
+	Thus, we don't need to store a set of all full AIS, but simply one array containing the last value of each AIS of each length, which will have 
+	length <= the input array we are iterating over. Secondly, this will be a sorted array, meaning that when we want to find the element that we want to replace,
 	in case 3, we can use a modified version of binary search, which runs in logn time.
 
 	Thus, to put it all together and summarize:
-	We create an empty array s. Each element at s[pos] will be the last value of the active LIS of length pos+1. Then, we iterate through nums once, and use comparisons
-	to check for the three cases mentioned above. We either add the current number to s, or we replace the appropriate value of s, using a modified binary search algorithm
+	We create an empty array s. Each element at s[pos] will be the last value of the active increasing subsequence of length pos+1. Then, we iterate through nums once, and use comparisons
+	to check for the three cases mentioned above. We either add the current number to s, or we replace the appropriate element of s, using a modified binary search algorithm
 	to find the right index to replace. We also make sure that we are not adding an identical value to the previous value of s, which would not make that active LIS increasing
 	any more as it would have two repeated values.
 

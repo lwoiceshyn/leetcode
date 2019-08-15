@@ -28,16 +28,16 @@ class Solution:
 
 class Solution2:
 	'''
-	Recursive version of the previous solution. Doesn't require passing pointers as arguments. Checks first if both the midpoint value is greater than the value to the right of it, in which case
-	the value to the right of it is the minimum. Then checks if the midpoint value is less than the value to the left of it, in which case the midpoint is the minimum value. If neither of these is true,
-	then checks if the midpoint value is less than the endpoint value. If so, recursively call the function on the subarray ranging from the start of the passed in array to the midpoint. If not, recursively
+	Recursive version of the previous solution. Doesn't require passing pointers as arguments. Check first if both the midpoint value is greater than the value to the right of it, in which case
+	the value to the right of it is the minimum. Then check if the midpoint value is less than the value to the left of it, in which case the midpoint is the minimum value. If neither of these is true,
+	then check if the midpoint value is less than the endpoint value. If so, recursively call the function on the subarray ranging from the start of the passed in array to the midpoint. If not, recursively
 	call the function on the subarray ranging from the midpoint to the end of the passed in array.
 
 	Time Complexity: O(logn)
 	Space Complexity: O(1)
 	'''
 	def findMin(self, nums: List[int]) -> int:
-	    low, high = 0, len(nums)- 1
+	    low, high = 0, len(nums)-1
 	    if low == high:
 	        return nums[low]
 	    mid = low + (high - low) // 2

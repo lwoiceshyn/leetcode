@@ -11,7 +11,7 @@ class Solution:
 	doesn't skip any potential triplets since shifting only one to a new unique value guarantees that the sum won't be zero, since the other two values in the triplet are the same as before,
 	where the sum was zero.
 
-	Time Complexity: O(n^2)
+	Time Complexity: O(n^2), since the sorting is O(nlogn), and the two-poiner technique runs in O(n^2)
 	Space Complexity: O(1)
 	'''
     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -34,6 +34,7 @@ class Solution:
                         while j < k and nums[k] == nums[k + 1]:
                             k -= 1
             i+=1
+        return outputs
 
 class Solution2:
 	'''
@@ -73,7 +74,7 @@ class Solution2:
 
 
 class Solution3:
-		'''
+	'''
 	(Not accepted by Leetcode)
 	A more elegant version of the above hashing solution, that doesn't require a dictionary. For each index i, instantiate an empty set, and iterate through all remaining indices 
 	that form a unique index pair that hasn't been visited yet. Calculate the value needed to complete the triplet at this unique pair. If that value is already in our set, ensure that the triplet

@@ -25,7 +25,7 @@ class Solution:
 class Solution:
 	'''
 	Recursive reversal. The first if statement checks if an empty list has been passed in or not. If not, use a temporary pointer to the next node, point the current node to the 
-	passed-in tail. Then, check for the base case: the temporary point is pointing to None. If met, return head, else, recursively call the function with the temporary pointer
+	passed-in tail. Then, check for the base case: the temporary pointer is pointing to None. If met, return head, else, recursively call the function with the temporary pointer
 	as head, and the current head as tail.
 
 	Time Complexity: O(n)

@@ -15,7 +15,7 @@ In the first case, the LCS is the simply the shared element plus the LCS of the 
 
 In the second case, the LCS is either LCS(a[1...n-1], b[1...m]) or LCS(a[1...n], b[1...m-1]), whichever of these two sequences is longer.
 
-The last case is the base case, in which the LCS of the two sequences is zero, since there is no intsersection.
+The last case is the base case, in which the LCS of the two sequences is zero, since there is no intersection.
 
 The following is the top-down solution using recursion plus memoization. Since the problem on hackerrank is using a list of integers for some reason,
 I use a helper function to map the sequences into strings so they are hashable and thus usable as keys for the memo dictionary.
@@ -28,7 +28,6 @@ memo = {}
 def strmap(a,b):
     return(''.join(map(str,a)), ''.join(map(str,b)))
 def longestCommonSubsequence(a, b):
-
     if len(a) == 0 or len(b) == 0:
         return []
     if strmap(a,b) not in memo:

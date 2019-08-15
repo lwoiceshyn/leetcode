@@ -7,7 +7,7 @@ class Solution:
 	'''
 	Bottom-up solution. Create a DP array of len(s) + 1, with each element being a boolean value initialized to False, except the 
 	initial value, which is initialized to True. Any element in the array at index i being True signifies that a prefix to that index
-	was a word in the dictionary which ended at index i-1. 
+	was a word in the dictionary which ended at index i-1, and that this word was also preceeded by a valid dictionary word. 
 
 	Then, iterate through the DP array, and at each iteration, check all possible
 	prefixes to that index. If the prefix is a word in the dictionary, and the dp array's value at the first index of that prefix is True,
@@ -37,7 +37,7 @@ class Solution:
 	use the check_prefix variable to see if True is returned from that branch, and if not, try the rest of the prefixes.
 
 	A memoization dictionary is used to handle the overlapping subproblems.
-
+	
 	Time Complexity: O(n*max_word_length)
 	Space Complexity: O(n)
 	'''

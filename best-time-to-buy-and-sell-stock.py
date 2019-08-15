@@ -16,8 +16,6 @@ class Solution:
         curr_min = prices[0]
         curr_max_profit = -float('inf')
         for i in range(1,len(prices)):
-            if prices[i] - curr_min > curr_max_profit:
-                curr_max_profit = prices[i] - curr_min
-            if prices[i] < curr_min:
-                curr_min = prices[i]
+            curr_max_profit = max(curr_max_profit, prices[i] - curr_min)
+            curr_min = min(curr_min, prices[i])
         return curr_max_profit if curr_max_profit > 0 else 0

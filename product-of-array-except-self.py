@@ -33,7 +33,7 @@ class Solution:
 	return our left_products array without using any additional space.
 
 	Time Complexity: O(n)
-	Space Complexity: O(1)
+	Space Complexity: O(1) (Technically it's still O(n) but the question says we can discount the returned array)
 	'''
     def productExceptSelf(self, nums: List[int]) -> List[int]:
 	    if not nums:
