@@ -8,8 +8,8 @@ class Solution:
     our list of lists into halves until we have all pairs of them only, and then merge each pair together in linear time. Dividing
     our list only takes log(k) time, so the total time complexity is O(nklog(k)).
 
-    Time Complexity: O(nklog(k)), where n is the length of the longest linked list, and k is the number of linked lists.
-    Space Complexity: O(1)
+    Time Complexity: O(nlog(k)), where n is the length of the longest linked list, and k is the number of linked lists.
+    Space Complexity: O(log(k)), since we need recursive stack space for our divide and conquer.
     '''
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
         if not lists or not any(lists):
@@ -51,7 +51,6 @@ class Solution2:
 
     Time Complexity: O(nk^2), since there are n*k total recursive calls, and each recursive call loops through each linked list.
     Space Complexity: O(1)
-
     '''
     def mergeKLists(self, lists):
         if not lists or not any(lists):
@@ -79,6 +78,45 @@ class Solution2:
                 min_idx = i
         lists[min_idx] = lists[min_idx].next
         min_head.next = self.recurse(lists)
-        return min_hea
+        return min_head
+
+
+import heapq
+class Solution3:
+    '''
+    Use a min-heap as a priority queue to sort the linked lists in our list by their value. We do this using
+    the heapq module, where we can have each item in the priority queue be represented by a tuple, where
+    the first element in the tuple is the key, and the second is the object associated with that key, In this case,
+    the key is the value of that linked list node, and the key is the node itself. First, assign dummy/curr nodes 
+    in order to build/return the merged linked list, and create the priority queue out of all the nonempty lists.
+
+    Then, while the priority queue isn't empty, extract the root, assign the next node in the merged list to this
+    node, and then, if the root isn't a tail node, push its next node to the priority queue.
+
+    Finally, when all nodes in the priority queue have been processed, i.e, reached their end, then return
+    dummy, which is pointing to the head of the merged list.
+
+    Time Complexity: O(nlog(k)), where n is the length of the longest list, and k is the number of linked lists. We need to traverse
+                     at least n times, and our heap operations(push, pop) are botj log(k)
+    Space Complexity: O(k), where k is the number of linked lists.
+    '''
+    def mergeKLists(self, lists):
+        if not lists or not any(lists):
+            return None
+        if len(lists) == 1:
+            return lists[0]
+        dummy = curr = ListNode(0)
+        pq = []
+        for l in lists:
+            if l:
+                heapq.heappush(pq, (l.val, l))
+
+        while pq:
+            curr_min = heapq.heappop(pq)[1]
+            curr.next = curr_min
+            curr = curr.next
+            if curr_min.next:
+                heapq.heappush(pq, (curr_min.next.val, curr_min.next))
+        return dummy.next
 
 
