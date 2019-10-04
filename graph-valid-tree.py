@@ -20,6 +20,9 @@ class Solution:
 
 	I use a dictionary of int:set(int) key:value mappings, where the sets are the nodes connected to that vertex. Then, simply call the DFS function
 	from the first node, which will return True if it hits a cycle. If that happens, return False, or if we didn't visit all nodes, return False.
+
+	Time Complexity: O(V)
+	Space Complexity: O(V)
     '''
     def validTree(self, n, edges):
         if not edges:
