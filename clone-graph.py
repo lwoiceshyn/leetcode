@@ -37,12 +37,12 @@ class Solution:
 	returned node from the recursive call to neighbors.
 
 	Time Complexity: O(n) - All vertices visited once
-	Space Complexity: O(1) - Other than the copied graph, no additional space complexity used.
+	Space Complexity: O(n) - Recursion trace in worst case scenario of nodes being a linked list.
 	'''
     def cloneGraph(self, node: 'Node') -> 'Node':
         visited = {}
         def dfs(node):
-        	if not node:
+        	if node in visited:
         		return
             node_copy = Node(node.val, [])
             visited[node] = node_copy
