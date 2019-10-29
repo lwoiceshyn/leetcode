@@ -18,14 +18,7 @@ class Solution:
         stack = [root]
         while stack:
             node = stack.pop()
-            if node.left and node.right:
-                node.left, node.right = node.right, node.left
-            elif node.left:
-                node.right = node.left
-                node.left = None
-            elif node.right:
-                node.left = node.right
-                node.right = None
+            node.left, node.right = node.right, node.left
             if node.right:
                 stack.append(node.right)
             if node.left:

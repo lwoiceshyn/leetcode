@@ -62,7 +62,7 @@ class Solution3:
         else:
         	return self.traverse(root, 1, [])
 
-    def self.traverse(self, node, level, ans):
+    def traverse(self, node, level, ans):
     	if not node:
     		return
 
