@@ -70,3 +70,41 @@ class WordDictionary:
             return
 
 
+
+class WordDictionary2:
+    '''
+    Same as above but without using a class variable to track if the word is found, and instead having the recursive function call 
+    return True or False if the word is found.
+    '''
+    def __init__(self):
+        self.trie = {}
+
+    def addWord(self, word: str) -> None:
+        temp = self.trie
+        for c in word:
+            if c not in temp:
+                temp[c] = {}
+            temp = temp[c]
+        temp['_end'] = {}
+
+    def search(self, word: str) -> bool:
+        if not word:
+            return False
+        return self.dfs(word, self.trie)
+
+    def dfs(self, word, level):
+        if not word: 
+            if '_end' in level:
+                return True
+            else:
+                return False
+        if word[0] != '.':
+            if word[0] in level:
+                return self.dfs(word[1:], level[word[0]])
+            else:
+                return False
+        else:
+            for char in level.keys():
+                if self.dfs(word[1:], level[char]):
+                    return True
+            return False
