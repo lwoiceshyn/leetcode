@@ -1,8 +1,5 @@
 '''
-
 https://www.lintcode.com/problem/alien-dictionary/description
-
-
 '''
 
 from collections import defaultdict
@@ -35,7 +32,12 @@ class Solution:
 
     Time Complexity: O(V + E), 
     Space Complexity: O(V + E)
-    where V=c, and E=c^2, c being the number of unique characters in the input
+    where V=c, and E=c^2, c being the number of unique characters in the input.
+
+    NOTE: One of the question hints mentioned says to return in English lexicographical ordering if the topsort result has
+    multiple valid outputs. This is why we order the nodes in reverse alphabetical order before going through them. Normally,
+    creating forward/backward hierarchy mappings would be valid, and then only going through the nodes with 0 in-degree (don't
+    depend on any other nodes) to do topSort on would be the most efficient.
     """
     def alienOrder(self, words):
         hierarchy = defaultdict(set)
@@ -46,6 +48,9 @@ class Solution:
                 if words[i-1][j] != words[i][j]:
                     hierarchy[words[i-1][j]].add(words[i][j])
                     break
+        for word in words:
+            for i in range(1, len(word)):
+                hierarchy[word[i-1]].add(word[i])
         res = []
         visited = {}
         for node in nodes:
