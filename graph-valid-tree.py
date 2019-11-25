@@ -9,7 +9,7 @@ class Solution:
     '''
 	In order for an undirected graph to represent a valid tree, there are two conditions that have to be met. Firstly, If we search the graph
 	from any given vertex, we should be able to reach all other vertices in the graph, i.e., the graph should be connected. Secondly, the graph
-	should contain cycles. If we start a search from any random vertex, we should never reach a vertex that we have already visited.
+	shouldn't contain cycles. If we start a search from any random vertex, we should never reach a vertex that we have already visited.
 
 	In order to do this properly, we use a depth-first search function that is designed to start from any random vertex, and perform a DFS 
 	from that vertex, adding any new vertex we find to a set of a visited vertices. We also keep track of the last node we visited and prevent
