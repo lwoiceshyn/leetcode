@@ -19,7 +19,8 @@ class Solution:
 	first and last column.
 
 	Time Complexity: O(m*n)
-	Space Complexity: O(m*n)
+	Space Complexity: O(max(m,n)) for the recursion trace, assuming the lists used to store
+    the return value do not add additional space complexity.
 	'''
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         if not matrix or not matrix[0]:
@@ -61,8 +62,8 @@ class Solution:
 	these accordingly by iterating either through the row or the column and appending to
 	our answer.
 
-	Time Complexity: O(n*m)
-	Space Complexity: O(n*m)
+	Time Complexity: O(m*n)
+	Space Complexity: O(1)
 	'''
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         if not matrix or not matrix[0]:

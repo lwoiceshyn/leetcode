@@ -1,7 +1,5 @@
 '''
-
 https://leetcode.com/problems/word-search/
-
 '''
 
 
@@ -18,8 +16,8 @@ class Solution:
 	then recursively search all 4 adjacent cells, and then finally set this cell back to its original value once the
 	DFS from this cell has concluded.
 
-	Time Complexity: O(m*n*(4^s)), where s is the length of word.
-	Space Complexity: O(1)
+	Time Complexity: O(m*n*(3^s)), where s is the length of word. 3 since we're preventing backtracking.
+	Space Complexity: O(s), since this is the maximum depth of the recursion tree.
 	'''
     def exist(self, board: List[List[str]], word: str) -> bool:
         m, n = len(board), len(board[0])

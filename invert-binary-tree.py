@@ -18,14 +18,7 @@ class Solution:
         stack = [root]
         while stack:
             node = stack.pop()
-            if node.left and node.right:
-                node.left, node.right = node.right, node.left
-            elif node.left:
-                node.right = node.left
-                node.left = None
-            elif node.right:
-                node.left = node.right
-                node.right = None
+            node.left, node.right = node.right, node.left
             if node.right:
                 stack.append(node.right)
             if node.left:
@@ -45,16 +38,7 @@ class Solution2:
     def invertTree(self, root: TreeNode) -> TreeNode:
     	if not root:
     		return None
-    	if root.left and root.right:
-    		root.left, root.right = root.right, root.left
-    	elif root.left:
-    		root.right = root.left
-    		root.left = None
-    	elif root.right:
-    		root.left = root.right
-    		root.right = None
-    	else:
-    		return root
+    	root.left, root.right = root.right, root.left
     	self.invertTree(root.left)
     	self.invertTree(root.right)
     	return root

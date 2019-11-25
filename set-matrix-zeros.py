@@ -40,7 +40,10 @@ class Solution(object):
         zero. The only issue that arises here is that if the element [0][0] is set to zero, we don't
         know if that means the first row or first column should be set to zero. To solve this,
         assume [0][0] being zero only means that the first row should be zeros, and use a separate
-        variable col0 to indicate the first column should be zeros. Then, iterate through the matrix
+        variable col_zero to indicate the first column should be zeros. First, go through the first row and column,
+        and set col_zero to zero or matrix[0][0] to zero, if necessary. Then, iterate through the matrix from top
+        left to bottom right, and set all the first-row and first-column values to zero, as necessary. Do not set matrix[0][0]
+        to zero if j = 0, since col_zero is the variable tracking this. Then, iterate through the matrix
         from the bottom up (since we don't want to affect the first row and column of the matrix until
         all of the other values are set properly). Then lastly, go through the first row and column,
         if they should be set to zero, and set them to zero.
@@ -48,26 +51,29 @@ class Solution(object):
     	Time Complexity: O(m*n)
 		Space Complexity: O(1)
         """
-        rows = len(matrix)
-        cols = len(matrix[0])
-        col0 = 1
-        for i in range(rows):
-            for j in range(cols):
-                if matrix[i][j] == 0:
-                	matrix[i][0] = 0
-                	matrix[0][j] = 0
-        for i in range(rows,0,-1):
-        	for j in range(cols,0,-1):
-        		if matrix[0][j] or matrix[i][0] == 0:
-        			matrix[i][j] = 0
-        		if matrix[i][0] == 0:
-        			col0 = 0
-
-       	if matrix[0][0] == 0:
-       		for j in range(cols):
-       			matrix[0][j] = 0
-       	if not col0:
-       		for i in range(rows):
-       			matrix[i][0] = 0
-       	return matrix
+        m = len(matrix)
+        n = len(matrix[0])
+        col_zero = 1
+        for i in range(m):
+            if matrix[i][0] == 0:
+                col_zero = 0
+        for j in range(n):
+            if matrix[0][j] == 0:
+                matrix[0][0] = 0
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == 0 and j != 0:
+                    matrix[i][0] = 0
+                    matrix[0][j] = 0
+        for i in range(m-1,0,-1):
+            for j in range(n-1,0,-1):
+                if matrix[0][j] == 0 or matrix[i][0] == 0:
+                    matrix[i][j] = 0
+        if matrix[0][0] == 0:
+            for j in range(n):
+                matrix[0][j] = 0
+        if not col_zero:
+            for i in range(m):
+                matrix[i][0] = 0
+        return matrix
 

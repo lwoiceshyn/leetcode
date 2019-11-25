@@ -16,12 +16,12 @@ class Solution:
 	returned node from the recursive call to neighbors.
 
 	Time Complexity: O(n) - All vertices visited once
-	Space Complexity: O(n) - Recursion trace in worst case scenario of nodes being a linked list.
+	Space Complexity: O(n) - Recursive stack space requirement.
 	'''
     def cloneGraph(self, node: 'Node') -> 'Node':
         visited = {}
         def dfs(node):
-        	if node in visited:
+        	if not node:
         		return
             node_copy = Node(node.val, [])
             visited[node] = node_copy
