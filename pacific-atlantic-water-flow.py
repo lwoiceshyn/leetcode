@@ -54,7 +54,7 @@ class Solution2:
 	My first attempt. Inefficient version where we run DFS from every single cell, and use a new visited matrix for each cell. Then check 
 	if there is at least one visited True entry in both the atlantic and pacific sections. TLEs on Leetcode.
 
-	Time Complexity: O(m*n*4^(m+n))
+	Time Complexity: O(m*n*3^(m+n))
 	Space Complexity: O(m*n)
 	'''
     def dfs(self, matrix, visited, res, i, j, prev=float('inf')):

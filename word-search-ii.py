@@ -1,7 +1,5 @@
 '''
-
 https://leetcode.com/problems/word-search-ii/
-
 '''
 class Trie:
 	'''
@@ -64,8 +62,12 @@ class Solution:
 	to the prefix we are carrying. If at any call, the 'end' token exists in the current trie node, we know we have
 	found one of the desired words, so add it to the solution set.
 
-	Time Complexity: O(m*n*(4^s)*w), where s is the word length, and w is the number of words.
-	Space Complexity: O(s*w), w words of length s, which is the worst case space complexity of a trie.
+	Time Complexity: O(w*avg_w_length + m*n*(3^max_word_length)), where w is the number of words. The first term is the complexity
+    to build a Trie, and the second term is the complexity involved with iterating over the grid, and searching for all dictionary
+    words originating from that location. Exponential is 3 since there's no backtracking.
+
+	Space Complexity: O(avg_word_length*w). The worst-case space complexity occurs with no shared prefixes, e.g., every
+    word forms its own independent branch in the Trie, meaning the total nodes are the sum of nodes in each word.
 	'''
     def __init__(self):
         self.result = set()

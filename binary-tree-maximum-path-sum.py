@@ -1,7 +1,5 @@
 '''
-
-https://leetcode.com/problems/binary-tree-maximum-path-	sum/
-
+https://leetcode.com/problems/binary-tree-maximum-path-sum/
 '''
 
 
@@ -39,3 +37,24 @@ class Solution:
         either = node.val + max(left_max, right_max, 0)
         self.res = max(self.res, full, either)
         return either
+
+class Solution2:
+	'''
+	Same solution as above but doesn't rely on class variables, and instead returns a list where the
+	first value in the list is the max path sum that we can add to the parent potentially to extend
+	the path, and the second is the global maximum that we've found so far, including all local
+	paths which horseshoe around the node and its two children.
+	'''
+    def maxPathSum(self, root):
+        def max_to_node(node):
+            if not node:
+                return [float('-inf')] * 2
+            left = max_to_node(node.left)
+            right = max_to_node(node.right)
+            either = node.val + max(left[0], right[0], 0)
+            full = node.val + left[0] + right[0]
+            global_max = max(full, either, left[1], right[1])
+            return [either, global_max]
+        return max_to_node(root)[1]
+
+

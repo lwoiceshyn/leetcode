@@ -15,7 +15,7 @@ class Solution:
         return self.inorder(root, [])[k-1]
     def inorder(self, root, vals):
         if not root:
-            return vals
+            return
         self.inorder(root.left, vals)
         vals.append(root.val)
         self.inorder(root.right, vals)
@@ -72,7 +72,7 @@ class Solution3:
             root = stack.pop()
             k -= 1
             if k == 0:
-              return k.val
+              return root.val
             elif k < 0:
               return
             else:

@@ -27,7 +27,7 @@ class Solution:
 	    	count += 1
 	    	self.undirectedDFS(remaining_nodes[0], None, visited)
 	    	for node in visited:
-	    		remaining_nodes.remove(nodes)
+	    		remaining_nodes.remove(node)
 	    		visited.remove(node)
 	    return count
 

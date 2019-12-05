@@ -1,29 +1,5 @@
 '''
-
 https://leetcode.com/problems/number-of-islands/
-
-Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
-You may assume all four edges of the grid are all surrounded by water.
-
-Example 1:
-
-Input:
-11110
-11010
-11000
-00000
-
-Output: 1
-Example 2:
-
-Input:
-11000
-11000
-00100
-00011
-
-Output: 3
-
 '''
 
 class Solution:
@@ -37,8 +13,8 @@ class Solution:
     already been marked on the island matrix. Each time we find a new undiscovered island, populate its corresponding elements
     in islands, and increase the island counter by 1, until we've checked every element in grid.
 
-    Time Complexity: O(n*m*4^(n+m))
-    Space Complexity: O(n*m)
+    Time Complexity: O(m*n*3^(m*n))
+    Space Complexity: O(m*n)
     '''
     def __init__(self):
         self.dirs = [(1,0), (-1,0), (0,1), (0,-1)]
@@ -71,7 +47,7 @@ class Solution2:
     Same as above but we don't actually need an additional matrix, and can just change the island elements
     in the original matrix, leading to constant space complexity.
 
-    Time Complexity: O(n*m*4^(n+m))
+    Time Complexity: O(n*m*3^(n+m))
     Space Complexity: O(1)
     '''
     def __init__(self):
