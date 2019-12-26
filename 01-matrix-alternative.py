@@ -35,7 +35,7 @@ class Solution:
 		m, n = len(grid), len(grid[0])
 		dirs = [(1,0), (0,1), (-1,0), (0,-1)]
 		queue = deque()
-		visisted = set()
+		visited = set()
 		for i in range(m):
 			for j in range(n):
 				if grid[i][j] == 'X':

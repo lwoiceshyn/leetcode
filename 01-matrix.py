@@ -24,7 +24,7 @@ class Solution:
     				queue = deque([((i,j),0)])
     				visited = set()
     				while queue:
-    					pos, dist = deque.popleft()
+    					pos, dist = queue.popleft()
     					if matrix[pos[0]][pos[1]] == 0:
     						matrix[i][j] = dist
     						break
@@ -39,7 +39,7 @@ class Solution:
 class Solution2:
 	'''
 	Dynamic programming solution. Let each cell represent the shortest distance from that cell to a 0.
-	If we know the shortest distance to each of its four neighbors, the shortest distance to that cell is
+	If we know the shortest distance of each of its four neighbors to a zero, the shortest distance to that cell is
 	1 + min(shortest_neighbor). To apply this logic to a matrix, we need to do two sweeps: top-left to bottom-right
 	and bottom-right to top-left. In the first pass, we initially set all nonzero cells to an arbitrarily large
 	maximum value. 
@@ -47,7 +47,7 @@ class Solution2:
 	Time Complexity: O(m*n)
 	Space Complexity: O(1)
 	'''
-    def updateMatrix(self, matrix):
+    def updateMatrix(self, matrix: List[List[int]]) -> List[List[int]]:
 		if not matrix or not matrix[0]:
 			return matrix
 		m, n = len(matrix), len(matrix[0])

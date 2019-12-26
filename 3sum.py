@@ -4,12 +4,13 @@ https://leetcode.com/problems/3sum/
 
 class Solution:
 	'''
-	Uses the two-pointer technique to find all unique triplets in quadratic time. First, the array is sorted, which takes O(nlogn) time. Then, the two-pointer technique
-	is applied. The if statement after the first while statement ensures we do not redundantly re-check for identical values. Then, we compare triplets, and if greater than 0,
-	decrease our right pointer, and if less than 0, increase our left pointer. If our triplet sum is equal to zero, then we add it to our outputs list. The two final while statements
-	are necessary to ensure we do not include any repeated triplets. They each increment/decrement their respective pointer until a unique value is reached. Even if both are shifted, it
-	doesn't skip any potential triplets since shifting only one to a new unique value guarantees that the sum won't be zero, since the other two values in the triplet are the same as before,
-	where the sum was zero.
+	Uses the two-pointer technique to find all unique triplets in quadratic time. First, the array is sorted, which takes O(nlogn) time. 
+	Then, the two-pointer techniqueis applied. The if statement after the first while statement ensures we do not redundantly re-check for 
+	identical values. Then, we compare triplets, and if greater than 0, decrease our right pointer, and if less than 0, increase our left 
+	pointer. If our triplet sum is equal to zero, then we add it to our outputs list. The two final while statements are necessary to ensure 
+	we do not include any repeated triplets. They each increment/decrement their respective pointer until a unique value is reached. Even if 
+	both are shifted, it doesn't skip any potential triplets since shifting only one to a new unique value guarantees that the sum won't be 
+	zero, since the other two values in the triplet are the same as before, where the sum was zero.
 
 	Time Complexity: O(n^2), since the sorting is O(nlogn), and the two-poiner technique runs in O(n^2)
 	Space Complexity: O(1)
@@ -19,7 +20,7 @@ class Solution:
         nums.sort()
         i = 0
         while i < len(nums) - 2:
-            if i == 0 or nums[i] != nums[i - 1]: 
+            if i == 0 or nums[i] != nums[i-1]: 
                 j, k = i+1, len(nums)-1
                 while j < k:
                     if nums[i] + nums[j] + nums[k] > 0:
@@ -29,9 +30,9 @@ class Solution:
                     else:
                         outputs.append([nums[i], nums[j], nums[k]])
                         j, k = j+1, k-1
-                        while j < k and nums[j] == nums[j - 1]:
+                        while j < k and nums[j] == nums[j-1]:
                             j += 1
-                        while j < k and nums[k] == nums[k + 1]:
+                        while j < k and nums[k] == nums[k+1]:
                             k -= 1
             i+=1
         return outputs
@@ -39,12 +40,14 @@ class Solution:
 class Solution2:
 	'''
 	(Not accepted by Leetcode)
-	My first attempt at a solution using a hashing method. First, we iterate through all unique pairs of indices and find the value that would complete their triplet. This value
-	is used as a dictionary key, and the two indices that complete the triplet are stored as a corresponding value. These are stored in a list of nested tuples to ensure that the dictionary
-	values are not overwritten when an identical match value is used.
+	My first attempt at a solution using a hashing method. First, we iterate through all unique pairs of indices and find the value 
+	that would complete their triplet. This value is used as a dictionary key, and the two indices that complete the triplet are stored 
+	as a corresponding value. These are stored in a list of nested tuples to ensure that the dictionary values are not overwritten when
+	an identical match value is used.
 
-	Then, we go linearly through each value in the array, and see if that value completes a triplet by checking if it is a key in the dictionary. If so, we take the list of index pairs
-	that match this value and iterate through them. We use a list of sets to check if this triplet is unique, and if so, add it to our outputs.
+	Then, we go linearly through each value in the array, and see if that value completes a triplet by checking if it is a key in the dictionary. 
+	If so, we take the list of index pairs that match this value and iterate through them. We use a list of sets to check if this triplet is unique, 
+	and if so, add it to our outputs.
 
 	Time Complexity: O(n^2)
 	Space Complexity: O(n)
