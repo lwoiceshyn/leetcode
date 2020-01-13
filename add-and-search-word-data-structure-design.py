@@ -72,8 +72,8 @@ class WordDictionary:
 
 class WordDictionary2:
     '''
-    Same as above but without using a class variable to track if the word is found, and instead having the recursive function call 
-    return True or False if the word is found.
+    Same as above but without using a class variable to track if the word is found, 
+    and instead having the recursive function call return True or False if the word is found.
     '''
     def __init__(self):
         self.trie = {}

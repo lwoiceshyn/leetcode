@@ -11,10 +11,10 @@ class Solution:
         Time Complexity: O(n)
         Space Complexity: O(1)
         '''
-        if len(prices) == 0:
+        if not prices:
             return 0
         curr_min = prices[0]
-        curr_max_profit = -float('inf')
+        curr_max_profit = float('-inf')
         for i in range(1,len(prices)):
             curr_max_profit = max(curr_max_profit, prices[i] - curr_min)
             curr_min = min(curr_min, prices[i])

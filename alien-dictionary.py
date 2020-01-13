@@ -22,7 +22,7 @@ class Solution:
     
     The set we created of all of the characters is mapped to a list, and sorted in reverse, since in the case of there being 
     multiple valid topological orderings, we want to return the one which is in lexicographical order, as the question 
-    requires that.
+    requires that. 
 
     In the topsort function, we first check if the node has been visited yet. If so, check if the node has already been visited from that root.
     If so, return True, as this indicates a cycle. If not, add it to visited, indicate the root from which
@@ -30,9 +30,9 @@ class Solution:
     a cycle was found, so just return True all the way up the recursion. Otherwise, once the neighbors have all been processed, or
     we've reached a leaf node, append it to our results. If we've visited all nodes and not found any cycles, return False.
 
-    Time Complexity: O(V + E), 
+    Time Complexity: O(V + E) 
     Space Complexity: O(V + E)
-    where V=c, and E=c^2, c being the number of unique characters in the input.
+    Where V=c, and E=c^2, c being the number of unique characters in the input.
 
     NOTE: One of the question hints mentioned says to return in English lexicographical ordering if the topsort result has
     multiple valid outputs. This is why we order the nodes in reverse alphabetical order before going through them. Normally,

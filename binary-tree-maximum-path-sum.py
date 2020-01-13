@@ -44,6 +44,9 @@ class Solution2:
 	first value in the list is the max path sum that we can add to the parent potentially to extend
 	the path, and the second is the global maximum that we've found so far, including all local
 	paths which horseshoe around the node and its two children.
+
+    Time Complexity: O(n)
+    Space Complexity: O(h)
 	'''
     def maxPathSum(self, root):
         def max_to_node(node):

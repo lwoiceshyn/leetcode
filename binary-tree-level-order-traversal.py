@@ -1,4 +1,4 @@
-'''
+    '''
 https://leetcode.com/problems/binary-tree-level-order-traversal/
 
 '''
@@ -12,7 +12,7 @@ class Solution:
 	list to the temporary list.
 
 	Time Complexity: O(n)
-	Space Complexity: O(n)
+	Space Complexity: O(2^h), since the maximum number of nodes we're storing in our temp list is the number of nodes in the last level of the tree.
 	'''
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
@@ -37,7 +37,7 @@ class Solution2:
 	needing an explicit temp list.
 
 	Time Complexity: O(n)
-	Space Complexity: O(n)
+	Space Complexity: O(2^h), since the maximum number of nodes we're storing in our temp list is the number of nodes in the last level of the tree.
 	'''
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         ret, level = [], [root]
@@ -54,7 +54,7 @@ class Solution3:
 	at the end of the search, store all of the node values from left to right as well.
 
 	Time Complexity: O(n)
-	Space Complexity: O(n)
+	Space Complexity: O(h)
 	'''
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
