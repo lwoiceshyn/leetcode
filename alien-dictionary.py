@@ -5,6 +5,8 @@ https://www.lintcode.com/problem/alien-dictionary/description
 from collections import defaultdict
 class Solution:
     """
+    Credit kamyu104 on github for this general approach (DFS Topological Sort).
+
     Every pair of words that we analyze from the first to last word in the input list creates a hierarchical
     connection between two characters. When considering a word and its subsequent word, the first difference in
     a character between those two words creates a hierarchy such that the letter in word i > the letter in word i+1.
@@ -25,14 +27,20 @@ class Solution:
     requires that. 
 
     In the topsort function, we first check if the node has been visited yet. If so, check if the node has already been visited from that root.
-    If so, return True, as this indicates a cycle. If not, add it to visited, indicate the root from which
+    If so, return True, as this indicates a cycle. If not, add it to visited, indicating the root from which
     the DFS is being called from, and then recursively call topsort on all of its neighbors. If any of those calls return True, then 
     a cycle was found, so just return True all the way up the recursion. Otherwise, once the neighbors have all been processed, or
     we've reached a leaf node, append it to our results. If we've visited all nodes and not found any cycles, return False.
 
+<<<<<<< HEAD
     Time Complexity: O(V + E) 
     Space Complexity: O(V + E)
     Where V=c, and E=c^2, c being the number of unique characters in the input.
+=======
+    Time Complexity: O(N), where N is the number of nodes in the graph.
+    Space Complexity: O(V + E) = O(26 + 26^2) = O(1)
+    where V=c, and E=c^2, c being the number of unique characters in the input.
+>>>>>>> b33ad56ea428eb4d1ad39a8452a8287dd901b6a6
 
     NOTE: One of the question hints mentioned says to return in English lexicographical ordering if the topsort result has
     multiple valid outputs. This is why we order the nodes in reverse alphabetical order before going through them. Normally,
@@ -41,16 +49,13 @@ class Solution:
     """
     def alienOrder(self, words):
         hierarchy = defaultdict(set)
-        nodes = sorted(list(set(''.join(words))), reverse=True)
+        nodes = sorted(list(set(''.join(words))), reverse=True) #Guarantees that we visit nodes in reverse alphabetical order
         for i in range(1, len(words)):
             min_range = min(len(words[i-1]), len(words[i]))
             for j in range(min_range):
                 if words[i-1][j] != words[i][j]:
                     hierarchy[words[i-1][j]].add(words[i][j])
                     break
-        for word in words:
-            for i in range(1, len(word)):
-                hierarchy[word[i-1]].add(word[i])
         res = []
         visited = {}
         for node in nodes:
